@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zly.site.dao.SiteInfoMapper">
+  <resultMap id="BaseResultMap" type="com.zly.site.model.SiteInfo">
+    <result column="siteId" jdbcType="VARCHAR" property="siteid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="lng" jdbcType="VARCHAR" property="lng" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zly.site.model.SiteInfo">
+    insert into site_info (siteId, title, lng, 
+      lat)
+    values (#{siteid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{lng,jdbcType=VARCHAR}, 
+      #{lat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zly.site.model.SiteInfo">
+    insert into site_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="siteid != null">
+        siteId,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="siteid != null">
+        #{siteid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

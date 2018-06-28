@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zly.site.dao.CompanyTCPlogMapper">
+  <resultMap id="BaseResultMap" type="com.zly.site.model.CompanyTCPlog">
+    <result column="stime" jdbcType="VARCHAR" property="stime" />
+    <result column="dtime" jdbcType="VARCHAR" property="dtime" />
+    <result column="proto" jdbcType="VARCHAR" property="proto" />
+    <result column="dip" jdbcType="VARCHAR" property="dip" />
+    <result column="dport" jdbcType="VARCHAR" property="dport" />
+    <result column="sip" jdbcType="VARCHAR" property="sip" />
+    <result column="sport" jdbcType="VARCHAR" property="sport" />
+    <result column="uplink_length" jdbcType="VARCHAR" property="uplinkLength" />
+    <result column="downlink_length" jdbcType="VARCHAR" property="downlinkLength" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zly.site.model.CompanyTCPlog">
+    insert into tcplog (stime, dtime, proto, 
+      dip, dport, sip, sport, 
+      uplink_length, downlink_length)
+    values (#{stime,jdbcType=VARCHAR}, #{dtime,jdbcType=VARCHAR}, #{proto,jdbcType=VARCHAR}, 
+      #{dip,jdbcType=VARCHAR}, #{dport,jdbcType=VARCHAR}, #{sip,jdbcType=VARCHAR}, #{sport,jdbcType=VARCHAR}, 
+      #{uplinkLength,jdbcType=VARCHAR}, #{downlinkLength,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zly.site.model.CompanyTCPlog">
+    insert into tcplog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stime != null">
+        stime,
+      </if>
+      <if test="dtime != null">
+        dtime,
+      </if>
+      <if test="proto != null">
+        proto,
+      </if>
+      <if test="dip != null">
+        dip,
+      </if>
+      <if test="dport != null">
+        dport,
+      </if>
+      <if test="sip != null">
+        sip,
+      </if>
+      <if test="sport != null">
+        sport,
+      </if>
+      <if test="uplinkLength != null">
+        uplink_length,
+      </if>
+      <if test="downlinkLength != null">
+        downlink_length,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stime != null">
+        #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="dtime != null">
+        #{dtime,jdbcType=VARCHAR},
+      </if>
+      <if test="proto != null">
+        #{proto,jdbcType=VARCHAR},
+      </if>
+      <if test="dip != null">
+        #{dip,jdbcType=VARCHAR},
+      </if>
+      <if test="dport != null">
+        #{dport,jdbcType=VARCHAR},
+      </if>
+      <if test="sip != null">
+        #{sip,jdbcType=VARCHAR},
+      </if>
+      <if test="sport != null">
+        #{sport,jdbcType=VARCHAR},
+      </if>
+      <if test="uplinkLength != null">
+        #{uplinkLength,jdbcType=VARCHAR},
+      </if>
+      <if test="downlinkLength != null">
+        #{downlinkLength,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

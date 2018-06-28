@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zly.site.dao.SiteReMiMapper">
+  <resultMap id="BaseResultMap" type="com.zly.site.model.SiteReMi">
+    <result column="personId" jdbcType="VARCHAR" property="personid" />
+    <result column="siteId" jdbcType="VARCHAR" property="siteid" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="customername" jdbcType="VARCHAR" property="customername" />
+    <result column="onlineTime" jdbcType="VARCHAR" property="onlinetime" />
+    <result column="offlineTime" jdbcType="VARCHAR" property="offlinetime" />
+    <result column="areaId" jdbcType="VARCHAR" property="areaid" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zly.site.model.SiteReMi">
+    insert into site_record_minor (personId, siteId, xb, 
+      customername, onlineTime, offlineTime, 
+      areaId, birthday, age
+      )
+    values (#{personid,jdbcType=VARCHAR}, #{siteid,jdbcType=VARCHAR}, #{xb,jdbcType=VARCHAR}, 
+      #{customername,jdbcType=VARCHAR}, #{onlinetime,jdbcType=VARCHAR}, #{offlinetime,jdbcType=VARCHAR}, 
+      #{areaid,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zly.site.model.SiteReMi">
+    insert into site_record_minor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="personid != null">
+        personId,
+      </if>
+      <if test="siteid != null">
+        siteId,
+      </if>
+      <if test="xb != null">
+        xb,
+      </if>
+      <if test="customername != null">
+        customername,
+      </if>
+      <if test="onlinetime != null">
+        onlineTime,
+      </if>
+      <if test="offlinetime != null">
+        offlineTime,
+      </if>
+      <if test="areaid != null">
+        areaId,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="personid != null">
+        #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="siteid != null">
+        #{siteid,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="customername != null">
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="onlinetime != null">
+        #{onlinetime,jdbcType=VARCHAR},
+      </if>
+      <if test="offlinetime != null">
+        #{offlinetime,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        #{areaid,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

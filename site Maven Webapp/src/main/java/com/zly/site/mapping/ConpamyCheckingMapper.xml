@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zly.site.dao.ConpamyCheckingMapper">
+  <resultMap id="BaseResultMap" type="com.zly.site.model.ConpamyChecking">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="day" jdbcType="VARCHAR" property="day" />
+    <result column="checkin" jdbcType="VARCHAR" property="checkin" />
+    <result column="checkout" jdbcType="VARCHAR" property="checkout" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zly.site.model.ConpamyChecking">
+    insert into checking (id, day, checkin, 
+      checkout)
+    values (#{id,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, #{checkin,jdbcType=VARCHAR}, 
+      #{checkout,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zly.site.model.ConpamyChecking">
+    insert into checking
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+      <if test="checkin != null">
+        checkin,
+      </if>
+      <if test="checkout != null">
+        checkout,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="checkin != null">
+        #{checkin,jdbcType=VARCHAR},
+      </if>
+      <if test="checkout != null">
+        #{checkout,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

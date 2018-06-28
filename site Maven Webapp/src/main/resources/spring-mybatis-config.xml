@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL MAP Config 3.1//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 此配置用于打开属性值为null时,属性不返回的问题 -->
+        <setting name="callSettersOnNulls" value="true"/>
+    </settings>
+</configuration>

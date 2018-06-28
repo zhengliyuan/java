@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zly.site.dao.SiteRecordExtMapper">
+  <resultMap id="BaseResultMap" type="com.zly.site.model.SiteRecord">
+    <result column="personId" jdbcType="VARCHAR" property="personid" />
+    <result column="siteId" jdbcType="VARCHAR" property="siteid" />
+    <result column="xb" jdbcType="VARCHAR" property="xb" />
+    <result column="customername" jdbcType="VARCHAR" property="customername" />
+    <result column="onlineTime" jdbcType="VARCHAR" property="onlinetime" />
+    <result column="offlineTime" jdbcType="VARCHAR" property="offlinetime" />
+    <result column="areaId" jdbcType="VARCHAR" property="areaid" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+  </resultMap>
+  <select id="getCountByHour" resultType="java.util.HashMap">
+  	SELECT
+	SUBSTRING(t.onlineTime FROM 9 FOR 2) time_,
+	count(*) count_
+	FROM
+		site_record t
+	WHERE
+		LEFT (t.areaId, 2) != '50'
+	GROUP BY
+		time_;
+  </select>
+  <select id="getCountByDuration" resultType="java.util.HashMap">
+	SELECT
+		TIMESTAMPDIFF(
+			HOUR,
+			DATE_FORMAT(t.onlineTime, "%Y-%m-%d %H"),
+			DATE_FORMAT(
+				t.offlineTime,
+				"%Y-%m-%d %H"
+			)
+		) timeDiff,
+		COUNT(*) count_
+	FROM
+		site_record t
+	GROUP BY
+		timeDiff;
+  </select>
+  
+  <select id="getCountByNative" resultType="java.util.HashMap">
+  	SELECT
+	LEFT (TRIM(t.areaId), 2) area,
+	COUNT(*) count_
+	FROM
+		site_record t
+	WHERE
+		LEFT (TRIM(t.areaId), 2) != '50'
+	GROUP BY
+		area;
+  </select>
+  
+  <select id="getCountByProvince" resultType="java.util.HashMap">
+  SELECT t.provinceName name,a.count_ value FROM province_info t LEFT JOIN(
+	SELECT
+		LEFT (TRIM(t.areaId), 2) area,
+		COUNT(*) count_
+	FROM
+		site_record t
+	WHERE
+		LEFT (TRIM(t.areaId), 2) != '50'
+	GROUP BY
+		area) a ON t.areaId=a.area;
+  </select>
+</mapper>

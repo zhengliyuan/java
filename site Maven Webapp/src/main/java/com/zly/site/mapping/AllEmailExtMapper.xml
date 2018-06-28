@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zly.site.dao.AllEmailExtMapper">
+  <resultMap id="BaseResultMap" type="com.zly.site.model.AllEmail">
+    <result column="num" jdbcType="VARCHAR" property="num" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <select id="selectAllSendEmail" resultType="java.util.HashMap">
+  select * from allemail;
+  </select>
+  <select id="selectExist" parameterType="String" resultType="java.lang.Integer">
+  select count(*) count_ from allemail t where t.email=#{email};
+  </select>
+  <insert id="insertOneEmail" parameterType="com.zly.site.model.AllEmail">
+  insert into allemail (num, email)
+    values (#{num,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
+  </insert>
+</mapper>

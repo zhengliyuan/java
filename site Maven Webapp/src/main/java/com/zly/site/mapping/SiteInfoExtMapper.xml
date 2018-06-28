@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zly.site.dao.SiteInfoExtMapper">
+  <resultMap id="BaseResultMap" type="com.zly.site.model.SiteInfo">
+    <result column="siteId" jdbcType="VARCHAR" property="siteid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="lng" jdbcType="VARCHAR" property="lng" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+  </resultMap>
+  <select id="getAllSiteCount" resultType="java.lang.Integer">
+    select COUNT(*) count_ from site_info;
+  </select>
+</mapper>
